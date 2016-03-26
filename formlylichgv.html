@@ -1,0 +1,129 @@
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<table width="635">
+<br>
+<tr>
+<td width="242" align="center">SỞ GD&ĐT TỈNH VĨNH LONG</td>
+<td width="378" align="center">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</td>
+</tr>
+<tr></tr>
+<td height="22" align="center">TRƯỜNG THPT PHAN VĂN HÒA</td>
+<td align="center">Độc lập - Tự do - Hạnh phúc
+</tr>
+<tr>
+<td height="12"></td><td><hr width="160" color="#000000" /></td>
+</tr>
+</table>
+<table width="636">
+<td width="623" height="70" align="center" size="20" ><div align="center"><strong>LÝ LỊCH GIÁO VIÊN</strong></div></td>
+<div align="center"></div></table>
+<table width="644">
+<?php
+	$u=$_SESSION['username'];
+	include ('dbconect.php');
+	$sql="select * from GIAOVIEN gv join dantoc dt on gv.DT_MADT=dt.DT_MADT join tongiao tg on gv.TG_MA=tg.tg_MA join bo_mon bm on gv.bm_ma=bm.bm_ma where gv.GV_MA='$u'";
+	$result=mysql_query($sql);
+  		while($rows=@mysql_fetch_array($result))
+		{
+  ?>
+<tr>
+<td width="298">Họ tên: <strong><?php echo $rows['GV_HOTEN'];?></strong></td>
+<td colspan = "2">Giới Tính: <strong><?php echo $rows['GV_GIOITINH']; ?></strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Ngày sinh: <strong>
+  <?php ?>
+</strong> tháng <strong>
+<?php ?>
+</strong> năm <strong>
+<?php ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Số CMND:  <strong>
+  <?php echo $rows['GV_CMND'];?>
+</strong></td>
+</tr>
+<tr>
+<td width="298">Dân tộc: <strong>
+  <?php echo $rows['DT_TENDT'];?>
+</strong></td>
+<td width="178" colspan="2">Tôn giáo: <strong>
+  <?php echo $rows['TG_TEN'];?>
+</strong></td>
+</tr>
+<tr>
+<td width="53" colspan="3" rowspan="2">Chỗ ở hiện nay: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+<tr></tr>
+<tr>
+<td width="298">Học vị: <strong>
+  <?php ?>
+</strong></td>
+<td width="178" colspan="2">Chuyên Môn: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Trình độ ngoại ngữ: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Trình độ tin học: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Bộ môn: <strong>
+  <?php echo $rows['BM_TEN'];?>
+</strong></td>
+</tr>
+<tr>
+
+<td width="298" colspan="3">Chức vụ: <strong>
+  <?php 	 ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="2">Thời gian đảm nhiệm chức vụ: Từ ngày: <strong>
+  <?php ?>
+</strong></td>
+<td width="178">đến ngày: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+<tr>
+<td width="298" colspan="3">Địa chỉ liên hệ: Email: <strong>
+  <?php ?>
+</strong></td>
+</tr><tr>
+<td width="178" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Số điện thoại: <strong>
+  <?php ?>
+</strong></td>
+</tr>
+</table>
+<br /><br /><br />
+<table width="637">
+<?php
+$now = getdate(); ?>
+<tr>
+<td width="233"><div align="center"><strong>Xác nhận của giáo viên</strong></div></td>
+<td width="392"><div align="center">Vĩnh Long, ngày 
+  <?php echo $now["mday"]; ?> tháng <?php echo $now["mon"]; ?> năm   
+  <?php echo $now["year"]; ?></div></td> 
+</tr>
+<tr>
+<td height="43"><div align="center" rowspan ="2">Ký tên</div></td>
+<td><div align="center" rowspan ="2"><strong>HIỆU TRƯỞNG</strong></div></td>
+</tr>
+<tr></tr>
+<?php
+		}
+  ?>
+</table>
+  
